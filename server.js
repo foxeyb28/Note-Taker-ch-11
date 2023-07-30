@@ -45,12 +45,13 @@ app.post('/api/notes', (req, res) => {
     const notes = fs.readFileSync("./db/db.json");
     let notesObject= JSON.parse(notes);
     notesObject.push(req.body)
-    fs.writeFile("db.json", JSON.stringify(notesObject), (err) => {
+    fs.writeFile("./db/db.json", JSON.stringify(notesObject), (err) => {
         // Error checking
         if (err) throw err;
         // console.log("New data added");
       });
     console.log(notesObject)
+    res.json("Yay!");
 });
 
 app.listen(PORT, () =>
